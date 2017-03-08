@@ -6,8 +6,9 @@ namespace BlackJackGame{
         string name;
         public List<Card> hand { get; set; }
 
+        public bool isStop;
         //added sttus proprty
-        public int status{get; set;}
+        public int status=-1;
         public Player(string playerName){
             name=playerName;
             hand=new List<Card>();
@@ -18,12 +19,36 @@ namespace BlackJackGame{
             hand.Add(card);
             return hand;
         }
-
+        
+        public int Play(string userInput, Deck deck){
+            isStop=false;
+            if(userInput=="hit"){
+                draw(deck);
+            } 
+            if(userInput=="stop"){
+                isStop=true;
+            }
+            int total=0;
+            for(int i=0;i<hand.Count;i++){
+                total += hand[i].value;
+            }
+            Console.WriteLine(total);
+            if(total>21){
+                status=0;
+                isStop=true;
+            }
+            if(total==21){
+                isStop=true;
+                status=1;
+            }
+            return total;
+        }
+       
         // play method to hit/stop the game
-        // declar a varialble count
-        // store the value count of cards in hand of the player
+        // declar a varialble total
+        // store the value total of cards in hand of the player
         //  declare variable hit and stop,choose between hit/stop according
-        // if stop, return the current count.
+        // if stop, return the current total.
         // waits to check with the dealer.
         
         // method to change status to win/lose
