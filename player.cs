@@ -1,9 +1,9 @@
-using System;
 using System.Collections.Generic;
 
-namespace BlackJackGame{
+namespace BlackJackGame
+{
     public class Player{
-        string name;
+        public string name;
         public List<Card> hand { get; set; }
 
         //added sttus proprty

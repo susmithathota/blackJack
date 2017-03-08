@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BlackJackGame
 {
@@ -6,9 +7,13 @@ namespace BlackJackGame
     {
         public static void Main(string[] args)
         {   
-             Game newGame=new Game();
-             newGame.deck.reset();
-             Player dealer=new Player("dealer");
+             Console.WriteLine("Welcome to Black Jack");
+             List<string>players =  new List<string>();
+             players.Add("monday");
+             players.Add("susmitha");
+             players.Add("Abshir");
+             Game newGame=new Game(players);
+             newGame.Start();             
         }
     }
 }

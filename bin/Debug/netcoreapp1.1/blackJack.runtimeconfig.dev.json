@@ -1,7 +1,7 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "/Users/sridhardutta/.nuget/packages"
+      "C:\\Users\\mone\\.nuget\\packages"
     ]
   }
 }

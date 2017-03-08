@@ -21,7 +21,7 @@ namespace  BlackJackGame{
             cardList.Clear();
             for(int i=0;i<suitsArray.Length;i++){
                 for(int j=0;j<valArray.Length;j++){
-                    if(j>10){
+                    if(j>9){
                         cardList.Add(new Card(suitsArray[i],10,valArray[j]));
                     }
                     else{
