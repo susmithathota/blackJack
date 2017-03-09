@@ -32,6 +32,7 @@ namespace BlackJackGame{
             deck.shuffel();
             initHit();
             hit();
+            Compute();
             show();
 
         }
@@ -74,7 +75,7 @@ namespace BlackJackGame{
                     player.Play(resp, deck);
                     Console.WriteLine(player.total);
                     if(player.total > 21)
-                        Console.WriteLine($"Player {player.name} You lost");
+                        Console.WriteLine($"Player {player.name} lost");
                     if( player.status == 0 || player.status == 1 )
                          break;                  
                 }while(resp == "hit");            }
