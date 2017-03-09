@@ -32,13 +32,25 @@ namespace BlackJackGame{
             deck.shuffel();
             initHit();
             hit();
+            show();
 
         }
     //   deck should be shuffeled using (deck.shuffel)
     //  loop twice for player and dealer to draw the card
     //   every player draws: invoke draw method of player class
     //   delaer should draw
-
+       private void show(){
+            for(int i = 0; i  < players.Count - 1; i++){         
+                        if(players[i].status == 1 ){                            
+                                Console.WriteLine($"Player {players[i].name} Won the Game!!");                        
+                            
+                        }
+                         else if(players[players.Count -1].status != 0){
+                            Console.WriteLine($"Player {players[players.Count -1].name} Won the Game!!"); 
+                         }   
+                    
+                    }
+       }
         private void initHit(){
 
             foreach(Player player in players){
@@ -52,25 +64,52 @@ namespace BlackJackGame{
 
             foreach(Player player in players){
                 string resp; 
-               
-                Console.WriteLine($"Player {player.name} hit(h) or stop(s)");
-                resp = Console.ReadLine(); 
-                if(resp == "h") {               
-                    player.draw(deck);                       
-                }                
-                
-            }
+
+                do{                   
+                    
+                    Console.WriteLine($"Player {player.name} hit or stop");
+                    resp = Console.ReadLine(); 
+                    if(resp == "stop")
+                       break;
+                    player.Play(resp, deck);
+                    Console.WriteLine(player.total);
+                    if(player.total > 21)
+                        Console.WriteLine($"Player {player.name} You lost");
+                    if( player.status == 0 || player.status == 1 )
+                         break;                  
+                }while(resp == "hit");            }
 
         }
 
 
-
-        private void show(){
-
-        }
         private void Compute(){
+                int dealerIndex = players.Count -1;
+               
+                if(players[dealerIndex].status != 0){
+                    for(int i = 0; i  < players.Count -1; i++){         
+                         if(players[i].status != 0 ){
+                            if(players[i].total > players[dealerIndex].total && players[i].total <= 21){
+                                players[i].status = 1;
 
+                            } 
+                            
+
+                        }
+                    }
+                }else{
+                        for(int i = 0; i  < players.Count -1; i++){         
+                        if(players[i].status != 0 ){                            
+                                players[i].status = 1;                         
+                            
+                        }
+                            
+                    
+                    }
+
+
+                }
         }
+                
 
 
     }

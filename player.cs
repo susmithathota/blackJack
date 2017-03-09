@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace BlackJackGame
@@ -5,7 +6,7 @@ namespace BlackJackGame
     public class Player{
         public string name;
         public List<Card> hand { get; set; }
-
+        public int total = 0;
         public bool isStop;
         //added sttus proprty
         public int status=-1;
@@ -17,6 +18,7 @@ namespace BlackJackGame
         public object draw(Deck deck){
             Card card = deck.deal();
             hand.Add(card);
+            total += card.value;
             return hand;
         }
         
@@ -28,11 +30,8 @@ namespace BlackJackGame
             if(userInput=="stop"){
                 isStop=true;
             }
-            int total=0;
-            for(int i=0;i<hand.Count;i++){
-                total += hand[i].value;
-            }
-            Console.WriteLine(total);
+            
+                       
             if(total>21){
                 status=0;
                 isStop=true;
